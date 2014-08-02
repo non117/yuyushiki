@@ -2,3 +2,4 @@
 .pyo
 *.un~
 .DS_Store
+*.png
