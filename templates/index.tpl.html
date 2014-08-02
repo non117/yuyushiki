@@ -21,7 +21,9 @@
 </div>
 <div id="users">
 	{{ path.name }}
-	<img src="{{ path.as_uri() }}" alt="this is a image"/>
+	<a href="{{ path.as_posix() }}">
+		<img src="{{ path.as_posix() }}" alt="this is a image" width=400/>
+	</a>
 </div>
 
 </body></html>
