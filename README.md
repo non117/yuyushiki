@@ -1,13 +1,14 @@
 yuyushiki
 =========
 
-Yuyushiki Annotation tool
+Yuyushiki Annotation Tool
 
 依存関係
 -----------
-* Python 3.4 or higher.
+* Python 3.4 or higher ( 実は2.xでも動く )
 * jinja2
 * flask ( cgiではアレかもわからん )
+* MongoDB + pymongo
 
 仕様
 ------------
