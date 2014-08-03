@@ -47,7 +47,8 @@ def index():
             if p.as_posix() == latest[0]['path']:
                 break
         p = pages[i+1]
-    return render_template('index.tpl.html', path=p)
+    progress = round(collection.count() * 100 / len(pages), 2)
+    return render_template('index.tpl.html', path=p, progress=progress)
 
 @app.route('/data/<path:filename>')
 def static_yuyushiki(filename):
