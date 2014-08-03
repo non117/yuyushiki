@@ -7,6 +7,10 @@ from flask import Flask, render_template, send_from_directory, request
 from pymongo import Connection
 
 app = Flask(__name__)
+app.config.update(
+    DEBUG=True,
+)
+
 
 con = Connection('localhost', 27017)
 collection = con.yuyushiki.comics
@@ -55,6 +59,5 @@ def static_yuyushiki(filename):
     return send_from_directory(root.as_posix(), filename)
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    app.run(host='0.0.0.0')
 
