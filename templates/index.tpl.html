@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<h1>ゆゆ式</h1>
+<h1>Yuyushiki Annotation Tool</h1>
 <hr>
 <div id="notice">
 	<h2>アノテーションルール</h2>
@@ -19,11 +19,24 @@
 		<li>hoge</li>
 	</ul>
 </div>
-<div id="users">
-	{{ path.name }}
+<div id="content">
+	<h2>{{ path.name }}</h2>
 	<a href="{{ path.as_posix() }}">
-		<img src="{{ path.as_posix() }}" alt="this is a image" width=400/>
+		<img src="{{ path.as_posix() }}" alt="this is a image" height=400/>
 	</a>
+	<div id="forms">
+		<form method="POST" action="./">
+			<p>
+				台詞 : <input type="text" name="script" size=100/>
+			</p>
+			<p>
+			    <input type="checkbox" name="reedit" value="True"/>要修正
+				<input type="checkbox" name="useless" value="True"/>いらない
+				<input type="submit" value="submit"/>
+				<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
+			</p>
+		</form>
+	</div>
 </div>
 
 </body></html>

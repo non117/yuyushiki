@@ -22,8 +22,6 @@ Yuyushiki Annotation tool
 monogoDB使う。yuyushiki.comics
 
 * 画像ファイルのパス [主キー] : path
-* n巻 : volume
-* ページ : page
 * 台詞文字列 : script
 * [人物タグ] : characters
 * 要修正 bool : reedit, デフォルトオフ
