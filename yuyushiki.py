@@ -3,7 +3,7 @@ import atexit
 from functools import reduce
 from pathlib import Path
 
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, request, send_file
 from pymongo import Connection
 
 app = Flask(__name__)
@@ -58,6 +58,10 @@ def index():
 @app.route('/data/<path:filename>')
 def static_yuyushiki(filename):
     return send_from_directory(root.as_posix(), filename)
+
+@app.route('/templates/main.js')
+def load_js():
+    return send_file('templates/main.js')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
