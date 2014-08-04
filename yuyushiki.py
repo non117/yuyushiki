@@ -18,6 +18,7 @@ atexit.register(con.close)
 
 root = Path('data')
 pages = reduce(lambda a, b:a+b, [[p for p in path.iterdir()] for path in root.iterdir()])
+pages.sort()
 
 def get_latest():
     return list(collection.find({}).sort('_id',-1).limit(1))
