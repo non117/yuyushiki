@@ -28,7 +28,7 @@
 	<div id="forms">
 		<form method="POST" action="./">
 			<p>
-				台詞 : <input type="text" name="script" size=100 id="textbox"/>
+				台詞 : <input type="text" name="script" size=100 id="textbox" autofocus/>
 			</p>
 			<p>
 			<label><input type="checkbox" name="reedit" value="True"/>要修正</label>
@@ -42,6 +42,6 @@
 <div id="notice">
 	<h2>進捗</h2>
 	<label ><progress value="{{ progress }}" max="100"><span>{{ progress }}</span>%</progress> ({{ progress }}%)</label >
-</div>  
+</div>
 
 </body></html>
