@@ -27,6 +27,7 @@ monogoDB使う。yuyushiki.comics
 * いらない画像 bool : useless, デフォルトオフ
 
 * characters : ["野々原ゆずこ", "櫟井唯", "日向縁", "相川千穂", "岡野佳", "長谷川ふみ", "松本頼子", "その他", "無し"]
+ショートカット候補 : [yz, yi, yk, ch, k, fm, ok, space, ]
 
 
 UI

@@ -21,17 +21,24 @@ pages = reduce(lambda a, b:a+b, [[p for p in path.iterdir()] for path in root.it
 pages.sort()
 
 def get_latest():
-    return list(collection.find({}).sort('_id',-1).limit(1))
+    ret = list(collection.find({}).sort('_id',-1).limit(1))
+    try:
+        return ret[0]
+    except IndexError:
+        return []
+
+def get_tag_latest():
+    # タグがついてないレコードの最も古いやつを返す
+    ret = list(collection.find({'characters':[]}).limit(1))
+    try:
+        return ret[0]
+    except IndexError:
+        return []
 
 def find_one(path):
     return collection.find_one({'path':path})
 
-def insert(path, script, characters, reedit, useless):
-    d = {'path':path, 'script':script, 'characters':characters,
-            'reedit':reedit, 'useless':useless}
-    collection.insert(d)
-
-def upsert(path, script, characters, reedit, useless):
+def upsert(path, script='', characters=[], reedit=False, useless=False):
     d = {'path':path, 'script':script, 'characters':characters,
             'reedit':reedit, 'useless':useless}
     collection.update({'path':path}, d, upsert=True) 
@@ -47,7 +54,7 @@ def index():
         else:
             script = data.get('script', '')
             path = data.get('path')
-            characters = [] #TODO
+            characters = []
             reedit = bool(data.get('reedit', False))
             useless = bool(data.get('useless', False))
             upsert(path, script, characters, reedit, useless)
@@ -62,12 +69,47 @@ def index():
         if latest == []:
             p = pages[0]
         else:
-            i = pages.index(Path(latest[0]['path']))
+            i = pages.index(Path(latest['path']))
             p = pages[i+1]
     
     prev_data = find_one(p.as_posix())
     progress = round(collection.count() * 100 / len(pages), 2)
     return render_template('index.html', path=p, progress=progress, prev_data=prev_data)
+
+@app.route('/tag/', methods=['GET', 'POST'])
+def tag():
+    prev = False
+    if request.method == 'POST':
+        data = request.form
+        if data.get('action') == 'prev':
+            path = data.get('path')
+            prev = True
+        else:
+            path = data.get('path')
+            characters = data.get('characters') # TOD
+            data = find_one(path)
+            if data:
+                data['characters'] = characters
+                collection.update({'path':path}, data, upsert=True) 
+            else:
+                upsert(path, characters=characters)
+        
+        i = pages.index(Path(path))
+        if prev:
+            p = pages[i-1]
+        else:
+            p = pages[i+1]
+    elif request.method == 'GET':
+        latest = get_tag_latest()
+        if latest == []:
+            p = pages[0]
+        else:
+            i = pages.index(Path(latest['path']))
+            p = pages[i]
+    prev_data = find_one(p.as_posix())
+    progress = round(collection.find({'characters':[]}).count() * 100 / len(pages), 2)
+    return render_template('tag.html', path=p, progress=progress, prev_data=prev_data)
+
 
 @app.route('/data/<path:filename>')
 def static_yuyushiki(filename):
