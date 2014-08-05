@@ -1,13 +1,6 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Yuyushiki Annotation Tool</title>
-
+{% extends "base.html" %}
+{% block extrahead %}
 <style type="text/css">
-	body {
-		width : 85%;
-		margin : 25px auto;
-		font-family : 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',Meiryo, メイリオ, sans-serif;
-		color : #111;
-	}
 	progress {
 		width : 500px;
 	}
@@ -15,13 +8,9 @@
 		background: #ccccff;
 	}
 </style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="templates/main.js"></script>
-</head>
-<body>
-<h1>Yuyushiki Annotation Tool</h1>
-<hr>
-
+{% endblock %}
+{% block content %}
 <div id="content">
 	<h2>{{ path.name }}</h2>
 	<img src="{{ path.as_posix() }}" alt="this is a image" height=400/>
@@ -44,5 +33,5 @@
 	<h2>進捗</h2>
 	<label ><progress value="{{ progress }}" max="100"><span>{{ progress }}</span>%</progress> ({{ progress }}%)</label >
 </div>
+{% endblock %}
 
-</body></html>

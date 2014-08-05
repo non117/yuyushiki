@@ -67,7 +67,7 @@ def index():
     
     prev_data = find_one(p.as_posix())
     progress = round(collection.count() * 100 / len(pages), 2)
-    return render_template('index.tpl.html', path=p, progress=progress, prev_data=prev_data)
+    return render_template('index.html', path=p, progress=progress, prev_data=prev_data)
 
 @app.route('/data/<path:filename>')
 def static_yuyushiki(filename):
