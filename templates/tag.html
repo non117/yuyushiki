@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block extrahead %}
+<script src="../templates/main.js"></script>
+{% endblock %}
+{% block content %}
+<div id="content">
+	<h2>{{ path.name }}</h2>
+	<img src="../{{ path.as_posix() }}" alt="this is a image" height=400/>
+	<div id="forms">
+		<form method="POST" action="./">
+			<p>
+			<label><input type="submit" value="submit"/></label>
+			<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
+			<label><input type="submit" name="action" value="prev"/></label>
+			</p>
+		</form>
+	</div>
+</div>
+<div id="notice">
+	<h2>進捗</h2>
+	<label ><progress value="{{ progress }}" max="100"><span>{{ progress }}</span>%</progress> ({{ progress }}%)</label >
+</div>
+{% endblock %}
+

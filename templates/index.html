@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block extrahead %}
-<style type="text/css">
-	progress {
-		width : 500px;
-	}
-	.focus {
-		background: #ccccff;
-	}
-</style>
-<script src="templates/main.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('input').focus(function(){
+		$(this).parent().addClass('focus');
+	}).blur(function(){
+		$(this).parent().removeClass('focus');
+	});
+}); 
+</script>
 {% endblock %}
 {% block content %}
 <div id="content">
