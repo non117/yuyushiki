@@ -112,8 +112,12 @@ def tag():
 
 
 @app.route('/data/<path:filename>')
-def static_yuyushiki(filename):
+def static_data(filename):
     return send_from_directory(root.as_posix(), filename)
+
+@app.route('/img/<path:filename>')
+def static_img(filename):
+    return send_from_directory('img', filename)
 
 @app.route('/templates/main.js')
 def load_js():
