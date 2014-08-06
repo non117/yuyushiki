@@ -17,11 +17,11 @@ $(function(){
 	<div id="forms">
 		<form method="POST" action="./">
 			<p>
-			台詞 : <input type="text" name="script" size=100 id="textbox" autofocus {% if prev_data %} value="{{ prev_data.script }}" {% endif %}/>
+			台詞 : <input type="text" name="script" size=100 id="textbox" autofocus {% if data.script %} value="{{ data.script }}" {% endif %}/>
 			</p>
 			<p>
-			<label><input type="checkbox" name="reedit" value="True" {% if prev_data.reedit %}checked="checked"{% endif %}/>要修正</label>
-			<label><input type="checkbox" name="useless" value="True" {% if prev_data.useless %}checked="checked"{% endif %}/>いらない</label>
+			<label><input type="checkbox" name="reedit" value="True" {% if data.reedit %}checked="checked"{% endif %}/>要修正</label>
+			<label><input type="checkbox" name="useless" value="True" {% if data.useless %}checked="checked"{% endif %}/>いらない</label>
 			<label><input type="submit" value="submit"/></label>
 			<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
 			<label><input type="submit" name="action" value="prev"/></label>

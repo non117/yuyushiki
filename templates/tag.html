@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block extrahead %}
+<style type="text/css">
+#forms img.selected {
+	background-color:#FF8C00;
+}
+#forms img{
+	padding:3px;
+	cursor:pointer;
+}
+</style>
 <script src="../templates/main.js"></script>
 {% endblock %}
 {% block content %}
@@ -8,14 +17,22 @@
 	<img src="../{{ path.as_posix() }}" alt="this is a image" height=400/>
 	<div id="forms">
 		<form method="POST" action="./">
-			<img src="../img/yuzuko.png" height=80/>
-			<img src="../img/yukari.png" height=80/>
-			<img src="../img/yui.png" height=80/>
-			<img src="../img/aikawa.png" height=80/>
-			<img src="../img/kei.png" height=80/>
-			<img src="../img/fumi.png" height=80/>
-			<img src="../img/okasan.png" height=80/>
-			<img src="../img/other.png" height=80/>
+			<img src="../img/yuzuko.png" height=80 id="yuzuko" onclick="setVal(this)" {% if characters.yuzuko %}class="selected"{% endif %}/>
+			<img src="../img/yukari.png" height=80 id="yukari" onclick="setVal(this)" {% if characters.yukari %}class="selected"{% endif %}/>
+			<img src="../img/yui.png" height=80 id="yui" onclick="setVal(this)" {% if characters.yui %}class="selected"{% endif %}/>
+			<img src="../img/aikawa.png" height=80 id="aikawa" onclick="setVal(this)" {% if characters.aikawa %}class="selected"{% endif %}/>
+			<img src="../img/kei.png" height=80 id="kei" onclick="setVal(this)" {% if characters.kei %}class="selected"{% endif %}/>
+			<img src="../img/fumi.png" height=80 id="fumi" onclick="setVal(this)" {% if characters.fumi %}class="selected"{% endif %}/>
+			<img src="../img/okasan.png" height=80 id="okasan" onclick="setVal(this)" {% if characters.okasan %}class="selected"{% endif %}/>
+			<img src="../img/other.png" height=80 id="other" onclick="setVal(this)" {% if characters.other %}class="selected"{% endif %}/>
+			<input type="hidden" name="characters" id="yuzuko_input" {% if characters.yuzuko %}value="yuzuko"{% endif %}/>
+			<input type="hidden" name="characters" id="yukari_input" {% if characters.yukari %}value="yukari"{% endif %}/>
+			<input type="hidden" name="characters" id="yui_input" {% if characters.yui %}value="yui"{% endif %}/>
+			<input type="hidden" name="characters" id="aikawa_input" {% if characters.aikawa %}value="aikawa"{% endif %}/>
+			<input type="hidden" name="characters" id="kei_input" {% if characters.kei %}value="kei"{% endif %}/>
+			<input type="hidden" name="characters" id="fumi_input" {% if characters.fumi %}value="fumi"{% endif %}/>
+			<input type="hidden" name="characters" id="okasan_input" {% if characters.okasan %}value="okasan"{% endif %}/>
+			<input type="hidden" name="characters" id="other_input" {% if characters.other %}value="other"{% endif %}/>
 			<p>
 			<label><input type="submit" value="submit"/></label>
 			<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
