@@ -107,7 +107,7 @@ def tag():
             i = pages.index(Path(latest['path']))
             p = pages[i]
     prev_data = find_one(p.as_posix())
-    progress = round(collection.find({'characters':[]}).count() * 100 / len(pages), 2)
+    progress = round(collection.find({'characters':{'not':[]}}).count() * 100 / len(pages), 2)
     return render_template('tag.html', path=p, progress=progress, prev_data=prev_data)
 
 
