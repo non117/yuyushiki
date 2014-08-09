@@ -9,7 +9,8 @@
 	cursor:pointer;
 }
 </style>
-<script src="../templates/main.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/lib/jquery.hotkeys.js"></script>
 {% endblock %}
 {% block content %}
 <div id="content">
@@ -34,7 +35,7 @@
 			<input type="hidden" name="characters" id="okasan_input" {% if characters.okasan %}value="okasan"{% endif %}/>
 			<input type="hidden" name="characters" id="other_input" {% if characters.other %}value="other"{% endif %}/>
 			<p>
-			<label><input type="submit" value="submit"/></label>
+			<label><input type="submit" value="submit" id="submit"/></label>
 			<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
 			<label><input type="submit" name="action" value="prev"/></label>
 			</p>

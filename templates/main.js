@@ -15,6 +15,9 @@ $(function(){
 	}).blur(function(){
 		$(this).parent().removeClass('focus');
 	});
-
+	$(document).bind('keydown', 'ctrl+return', function(){
+		console.log(1);
+		$('#submit').click();
+	}); 
 
 });

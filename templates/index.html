@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block extrahead %}
+<script src="./js/lib/jquery.hotkeys.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('input').focus(function(){
 		$(this).parent().addClass('focus');
 	}).blur(function(){
 		$(this).parent().removeClass('focus');
+	});
+	$(document).bind('keydown', 'ctrl+return', function(){
+		$('#submit').click();
 	});
 }); 
 </script>
@@ -22,9 +26,9 @@ $(function(){
 			<p>
 			<label><input type="checkbox" name="reedit" value="True" {% if data.reedit %}checked="checked"{% endif %}/>要修正</label>
 			<label><input type="checkbox" name="useless" value="True" {% if data.useless %}checked="checked"{% endif %}/>いらない</label>
-			<label><input type="submit" value="submit"/></label>
+			<label><input type="submit" value="submit" id="submit"/></label>
 			<input type="hidden" name="path" value="{{ path.as_posix() }}"/>
-			<label><input type="submit" name="action" value="prev"/></label>
+			<label><input type="submit" name="action" value="prev" id="prev"/></label>
 			</p>
 		</form>
 	</div>

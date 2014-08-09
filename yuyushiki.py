@@ -159,9 +159,13 @@ def static_data(filename):
 def static_img(filename):
     return send_from_directory('img', filename)
 
-@app.route('/templates/main.js')
+@app.route('/js/main.js')
 def load_js():
     return send_file('templates/main.js')
+
+@app.route('/js/lib/<path:filename>')
+def load_libs(filename):
+    return send_from_directory('templates/lib', filename)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
