@@ -8,6 +8,25 @@
 	padding:3px;
 	cursor:pointer;
 }
+div#forms ul#characters {
+	min-height: 100px;
+	margin: 0;
+	padding: 0;
+}
+div#forms ul#characters li{
+	display: block;
+	float: left;
+	list-style-type: none;
+	width: 95px;
+	text-align: center;
+}
+div#forms ul#characters li img{
+	display: block;
+	margin: 0px auto;
+}
+div#forms p{
+	clear: both;
+}
 </style>
 <script src="../js/main.js"></script>
 <script src="../js/lib/jquery.hotkeys.js"></script>
@@ -18,14 +37,16 @@
 	<img src="../{{ path.as_posix() }}" alt="this is a image" height=400/>
 	<div id="forms">
 		<form method="POST" action="./">
-			<img src="../img/yuzuko.png" height=80 id="yuzuko" onclick="setVal(this)" {% if characters.yuzuko %}class="selected"{% endif %}/>
-			<img src="../img/yukari.png" height=80 id="yukari" onclick="setVal(this)" {% if characters.yukari %}class="selected"{% endif %}/>
-			<img src="../img/yui.png" height=80 id="yui" onclick="setVal(this)" {% if characters.yui %}class="selected"{% endif %}/>
-			<img src="../img/aikawa.png" height=80 id="aikawa" onclick="setVal(this)" {% if characters.aikawa %}class="selected"{% endif %}/>
-			<img src="../img/kei.png" height=80 id="kei" onclick="setVal(this)" {% if characters.kei %}class="selected"{% endif %}/>
-			<img src="../img/fumi.png" height=80 id="fumi" onclick="setVal(this)" {% if characters.fumi %}class="selected"{% endif %}/>
-			<img src="../img/okasan.png" height=80 id="okasan" onclick="setVal(this)" {% if characters.okasan %}class="selected"{% endif %}/>
-			<img src="../img/other.png" height=80 id="other" onclick="setVal(this)" {% if characters.other %}class="selected"{% endif %}/>
+			<ul id="characters">
+				<li><img src="../img/yuzuko.png" height=80 id="yuzuko" onclick="setVal(this)" {% if characters.yuzuko %}class="selected"{% endif %}/>k:ゆずこ</li>
+				<li><img src="../img/yukari.png" height=80 id="yukari" onclick="setVal(this)" {% if characters.yukari %}class="selected"{% endif %}/>j:縁</li>
+				<li><img src="../img/yui.png" height=80 id="yui" onclick="setVal(this)" {% if characters.yui %}class="selected"{% endif %}/>f:唯</li>
+				<li><img src="../img/aikawa.png" height=80 id="aikawa" onclick="setVal(this)" {% if characters.aikawa %}class="selected"{% endif %}/>d:相川千穂</li>
+				<li><img src="../img/kei.png" height=80 id="kei" onclick="setVal(this)" {% if characters.kei %}class="selected"{% endif %}/>h:岡野佳</li>
+				<li><img src="../img/fumi.png" height=80 id="fumi" onclick="setVal(this)" {% if characters.fumi %}class="selected"{% endif %}/>a:長谷川ふみ</li>
+				<li><img src="../img/okasan.png" height=80 id="okasan" onclick="setVal(this)" {% if characters.okasan %}class="selected"{% endif %}/>l:松本頼子</li>
+				<li><img src="../img/other.png" height=80 id="other" onclick="setVal(this)" {% if characters.other %}class="selected"{% endif %}/>s:その他</li>
+			</ul>
 			<input type="hidden" name="characters" id="yuzuko_input" {% if characters.yuzuko %}value="yuzuko"{% endif %}/>
 			<input type="hidden" name="characters" id="yukari_input" {% if characters.yukari %}value="yukari"{% endif %}/>
 			<input type="hidden" name="characters" id="yui_input" {% if characters.yui %}value="yui"{% endif %}/>
