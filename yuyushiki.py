@@ -63,6 +63,8 @@ def index():
             upsert(path, script, characters, reedit, useless)
         
         i = pages.index(Path(path))
+        if i == len(pages) - 1:
+            return render_template('finish.html')
         if prev:
             if i - 1 < 0:
                 p = pages[i]
@@ -127,6 +129,8 @@ def tag():
                 upsert(path, characters=characters)
         
         i = pages.index(Path(path))
+        if i == len(pages) - 1:
+            return render_template('finish.html')
         if prev:
             if i - 1 < 0:
                 p = pages[i]
