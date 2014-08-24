@@ -1,6 +1,19 @@
 {% extends "base.html" %}
+{% block extrahead %}
+<style type="text/css">
+#finish {
+	width : 80%;
+}
+
+</style>
+{% endblock %}
 {% block content %}
 <div id="content">
-	<img src="">
+	<img id="finish" src="{{ url_for('img', filename='finish.png') }}">
 </div>
+<div id="notice">
+	<h2>進捗</h2>
+	<label ><progress value="100" max="100"><span>100</span>%</progress> (100%)</label >
+</div> 
+{% endblock %}
 

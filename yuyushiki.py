@@ -63,8 +63,6 @@ def index():
             upsert(path, script, characters, reedit, useless)
         
         i = pages.index(Path(path))
-        if i == len(pages) - 1:
-            return render_template('finish.html')
         if prev:
             if i - 1 < 0:
                 p = pages[i]
@@ -74,7 +72,7 @@ def index():
             try:
                 p = pages[i+1]
             except IndexError:
-                return 'finished'
+                return render_template('finish.html')
     elif request.method == 'GET':
         p = get_latest()
     
@@ -129,8 +127,6 @@ def tag():
                 upsert(path, characters=characters)
         
         i = pages.index(Path(path))
-        if i == len(pages) - 1:
-            return render_template('finish.html')
         if prev:
             if i - 1 < 0:
                 p = pages[i]
@@ -140,7 +136,7 @@ def tag():
             try:
                 p = pages[i+1]
             except IndexError:
-                return 'finished'
+                return render_template('finish.html')
     elif request.method == 'GET':
         p = get_tag_latest()
     
@@ -154,21 +150,24 @@ def tag():
     progress = round(collection.find({'characters':{'$ne':[]}}).count() * 100 / len(pages), 2)
     return render_template('tag.html', path=p, progress=progress, characters=characters)
 
+#@app.route('/test')
+def test():
+    return render_template('finish.html')
 
 @app.route('/data/<path:filename>')
-def static_data(filename):
+def data(filename):
     return send_from_directory(root.as_posix(), filename)
 
 @app.route('/img/<path:filename>')
-def static_img(filename):
+def img(filename):
     return send_from_directory('img', filename)
 
 @app.route('/js/main.js')
-def load_js():
+def mainjs():
     return send_file('templates/main.js')
 
 @app.route('/js/lib/<path:filename>')
-def load_libs(filename):
+def js(filename):
     return send_from_directory('templates/lib', filename)
 
 if __name__ == '__main__':
