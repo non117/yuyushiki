@@ -141,10 +141,10 @@ def tag():
         p = get_tag_latest()
     
     data = find_one(p.as_posix())
-    if prev:
-        data = skip_prev(data, data)
-    else:
-        data = skip_next(data, data)
+    #if prev:
+    #    data = skip_prev(data, data)
+    #else:
+    #    data = skip_next(data, data)
     p = Path(data['path']) if data else p
     characters = {c:True for c in data['characters']} if data else []
     progress = round(collection.find({'characters':{'$ne':[]}}).count() * 100 / len(pages), 2)
