@@ -3,4 +3,3 @@
 *.un~
 .DS_Store
 data
-node_modules
