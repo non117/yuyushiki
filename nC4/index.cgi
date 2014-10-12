@@ -19,7 +19,7 @@ def index():
     frames = get4frame()
     html = tpl.render({'frames':frames})
     print('Content-Type: text/html; charset=utf-8\n')
-    print(html)
+    print(html.encode('utf-8'))
 
 if __name__ == '__main__':
     index()
