@@ -19,8 +19,8 @@ def search(word):
 def index():
     env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
     tpl = env.get_template('search.html')
-    word = cgi.FieldStorage().getvalue('word')#.decode('utf-8')
-    params = {'result':search(word)}
+    word = cgi.FieldStorage().getvalue('word')
+    params = {'results':search(word)}
     html = tpl.render({'test':params})
     print('Content-Type: text/html; charset=utf-8\n')
     print(html.encode('utf-8'))

@@ -17,6 +17,8 @@
 		</style>
 	</head>
 	<body>
-		{{ test }}
+		{% for result in results %}
+			<img src="{{ result }}" />
+		{% endfor %}
 	</body>
 </html>
