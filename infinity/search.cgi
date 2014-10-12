@@ -17,9 +17,10 @@ def get4frame():
 def index():
     env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
     tpl = env.get_template('search.html')
+    params = cgi.FieldStorage().get('word','')
     #frames = get4frame()
     #html = tpl.render({'frames':frames})
-    html = tpl.render({'test':cgi.FieldStorage()})
+    html = tpl.render({'test':params})
     print('Content-Type: text/html; charset=utf-8\n')
     print(html.encode('utf-8'))
 
