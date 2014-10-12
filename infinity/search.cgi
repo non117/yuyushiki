@@ -7,19 +7,20 @@ from jinja2 import Environment, FileSystemLoader
 
 conn = sqlite3.connect('yuyushiki.db', check_same_thread=False)
 
-def get4frame():
-    sql = 'select path from comics where script like "{0}%"'
+def search(word):
+    sql = 'select path from comics where script like "{0}%"'.format(word)
     cursor = conn.cursor()
     l = cursor.execute(sql).fetchall()
     cursor.close()
+    if l == []:
+        return l
     return reduce(lambda x, y: x+y,l)
 
 def index():
     env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
     tpl = env.get_template('search.html')
-    params = cgi.FieldStorage().get('word','')
-    #frames = get4frame()
-    #html = tpl.render({'frames':frames})
+    word = cgi.FieldStorage().getvalue('word')#.decode('utf-8')
+    params = {'result':search(word)}
     html = tpl.render({'test':params})
     print('Content-Type: text/html; charset=utf-8\n')
     print(html.encode('utf-8'))
