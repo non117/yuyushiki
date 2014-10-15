@@ -21,7 +21,7 @@ def index():
     tpl = env.get_template('search.html')
     word = cgi.FieldStorage().getvalue('word')
     params = {'results':search(word)}
-    html = tpl.render({'test':params})
+    html = tpl.render(params)
     print('Content-Type: text/html; charset=utf-8\n')
     print(html.encode('utf-8'))
 
