@@ -20,7 +20,8 @@ def index():
     env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
     tpl = env.get_template('search.html')
     word = cgi.FieldStorage().getvalue('word')
-    params = {'results':search(word)}
+    results = search(word)
+    params = {'results':results,'count':len(results)}
     html = tpl.render(params)
     print('Content-Type: text/html; charset=utf-8\n')
     print(html.encode('utf-8'))
