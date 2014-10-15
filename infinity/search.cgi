@@ -8,7 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 conn = sqlite3.connect('yuyushiki.db', check_same_thread=False)
 
 def search(word):
-    sql = 'select path from comics where script like "{0}%"'.format(word)
+    sql = 'select path from comics where script like "%{0}%"'.format(word)
     cursor = conn.cursor()
     l = cursor.execute(sql).fetchall()
     cursor.close()
